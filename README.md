@@ -12,7 +12,7 @@ This project is a learning resource tracker using Angular.
 ## Setup Instructions
 
 1. Clone:
-git clone https://github.com/YOUR_USERNAME/appdev1-sdg4-edutrack.git
+git clone https://github.com/UBSITCabaticLeila/appdev1-sdg4-Edutrack.git
 
 2. Install:
 npm install
