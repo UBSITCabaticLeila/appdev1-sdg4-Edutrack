@@ -8,10 +8,15 @@ import { authGuard } from './guards/auth.guard';
 import { unsavedGuard } from './guards/unsaved.guard';
 
 export const routes: Routes = [
-  { path: 'home', component: HomeComponent },
-  { path: 'dashboard', component: DashboardComponent, canActivate: [authGuard] },
-  { path: 'detail/:id', component: DetailComponent, canDeactivate: [unsavedGuard] },
-  { path: 'about', component: AboutComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [authGuard],
+    canDeactivate: [unsavedGuard]  // ← moved here from detail
+  },
+  { path: 'detail/:id', component: DetailComponent },  // ← removed guard from here
+  { path: 'about', component: AboutComponent },
   { path: '**', component: NotFoundComponent }
 ];

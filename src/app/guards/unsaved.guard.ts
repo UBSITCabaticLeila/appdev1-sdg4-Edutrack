@@ -1,7 +1,12 @@
 import { CanDeactivateFn } from '@angular/router';
-import { DetailComponent } from '../pages/detail/detail';
+import { DashboardComponent } from '../pages/dashboard/dashboard';
 
-export const unsavedGuard: CanDeactivateFn<DetailComponent> = (component) => {
-  return confirm('You may lose unsaved changes. Leave this page?');
+// canDeactivate guard — warns before leaving dashboard (Check-in 4)
+export const unsavedGuard: CanDeactivateFn<DashboardComponent> = (component) => {
+  if (component.hasUnsavedChanges()) {
+    return confirm(
+      'You have an active search. Leave the page?'
+    );
+  }
+  return true;
 };
-

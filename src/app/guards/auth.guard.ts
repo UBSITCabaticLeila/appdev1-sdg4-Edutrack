@@ -1,10 +1,24 @@
-import { CanActivateFn, Router } from '@angular/router';
 import { inject } from '@angular/core';
+import { CanActivateFn, Router } from '@angular/router';
 
-export const authGuard: CanActivateFn = () => {
+// canActivate guard — protects /dashboard route (Check-in 2 & 4)
+export const authGuard: CanActivateFn = (route, state) => {
   const router = inject(Router);
+  
+  // Check if user has logged in
+  const isLoggedIn = localStorage.getItem('edutrack_user') !== null;
 
-  const isLoggedIn = true;
+  if (isLoggedIn) {
+    return true;
+  }
 
-  return isLoggedIn ? true : router.createUrlTree(['/home']);
+  // Redirect to /home with returnUrl
+  return router.createUrlTree(['/home'], {
+    queryParams: { returnUrl: state.url }
+  });
 };
+
+// 🔑 To "log in" during demo, run in browser console:
+// localStorage.setItem('edutrack_user', 'Leila')
+// To log out:
+// localStorage.removeItem('edutrack_user')

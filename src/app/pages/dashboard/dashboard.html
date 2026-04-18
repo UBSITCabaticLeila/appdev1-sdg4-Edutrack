@@ -1,2 +1,160 @@
-<h1>Dashboard</h1>
-<p>Here you’ll see your resources and progress.</p>
+<div class="dashboard-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-user">
+        <div class="user-avatar">2</div>
+        <div>
+          <div class="user-id">20243418</div>
+          <div class="user-email">20243418&#64;s.ubaguio.edu</div>
+        </div>
+      </div>
+  
+      <div class="sidebar-section-label">STUDY</div>
+      <nav class="sidebar-nav">
+        <button class="sidebar-link" [class.active]="activeSection() === 'overview'" (click)="setSection('overview')">
+          📊 Overview
+        </button>
+        <button class="sidebar-link" [class.active]="activeSection() === 'subjects'" (click)="setSection('subjects')">
+          📖 My Subjects
+        </button>
+        <button class="sidebar-link" [class.active]="activeSection() === 'goals'" (click)="setSection('goals')">
+          🎯 Daily Goals
+        </button>
+        <button class="sidebar-link" [class.active]="activeSection() === 'pomo'" (click)="setSection('pomo')">
+          ⏱️ Pomodoro Timer
+        </button>
+      </nav>
+  
+      <div class="sidebar-section-label">DISCOVER</div>
+      <nav class="sidebar-nav">
+        <button class="sidebar-link" routerLink="/books">
+          📚 Find Books
+        </button>
+        <button class="sidebar-link" routerLink="/about">
+          🌍 SDG 4 Info
+        </button>
+      </nav>
+  
+      <button class="sidebar-signout">↩ Sign Out</button>
+    </aside>
+  
+    <!-- MAIN -->
+    <main class="dashboard-main">
+  
+      <!-- HEADER -->
+      <div class="dash-header">
+        <div>
+          <h1>{{ greeting }}, Scholar! 👋</h1>
+          <p class="dash-date">{{ today }}</p>
+        </div>
+        <button class="btn-add-subject">+ Add Subject</button>
+      </div>
+  
+      <!-- STAT CARDS -->
+      <div class="stat-cards">
+        <div class="stat-card">
+          <div class="stat-card-label">Study Hours Today</div>
+          <div class="stat-card-num">2.5</div>
+          <div class="stat-card-sub">↑ 0.5 from yesterday</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-label">Current Streak</div>
+          <div class="stat-card-num">5 🔥</div>
+          <div class="stat-card-sub">days in a row</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-label">Goals Completed</div>
+          <div class="stat-card-num">3/5</div>
+          <div class="stat-card-sub">today</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-label">Pomodoros Done</div>
+          <div class="stat-card-num">{{ pomosCompleted() }}</div>
+          <div class="stat-card-sub">= {{ pomosCompleted() * 25 }} min focused</div>
+        </div>
+      </div>
+  
+      <!-- QUOTE -->
+      <div class="quote-card">
+        <div class="quote-marks">"</div>
+        <p class="quote-text">{{ currentQuote.text }}</p>
+        <p class="quote-author">{{ currentQuote.author }}</p>
+      </div>
+  
+      <!-- SUBJECTS TABLE -->
+      <div class="subjects-card">
+        <div class="subjects-header">
+          <h2>My Subjects</h2>
+          <button class="btn-add">+ Add</button>
+        </div>
+        <div class="subjects-list">
+          <div *ngFor="let s of subjects" class="subject-row">
+            <div class="subject-dot" [style.background]="s.color"></div>
+            <div class="subject-info">
+              <div class="subject-name">{{ s.name }}</div>
+              <div class="subject-meta">Chapter {{ s.chapter }} of {{ s.total }} · {{ s.updated }}</div>
+            </div>
+            <span class="subject-pct" [style.color]="s.color">{{ s.progress }}%</span>
+            <div class="subject-bar-wrap">
+              <div class="subject-bar">
+                <div class="subject-fill" [style.width.%]="s.progress" [style.background]="s.color"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+    </main>
+  
+    <!-- RIGHT PANEL -->
+    <aside class="right-panel">
+  
+      <!-- POMODORO -->
+      <div class="panel-card">
+        <h3>Pomodoro Timer</h3>
+        <div class="pomo-mode">FOCUS SESSION</div>
+        <div class="pomo-time">{{ pomoDisplay() }}</div>
+        <div class="pomo-controls">
+          <button class="btn-pomo-start" (click)="togglePomo()">
+            {{ pomoRunning() ? 'Pause' : 'Resume' }}
+          </button>
+          <button class="btn-pomo-reset" (click)="resetPomo()">Reset</button>
+        </div>
+        <div class="pomo-dots">
+          <span *ngFor="let d of [0,1,2,3,4,5,6,7]" class="pomo-dot" [class.done]="d < pomosCompleted()"></span>
+        </div>
+        <div class="pomo-sessions">{{ pomosCompleted() }} of 8 sessions complete today</div>
+      </div>
+  
+      <!-- THIS WEEK -->
+      <div class="panel-card">
+        <h3>This Week</h3>
+        <div class="streak-num">5 <span>day streak 🔥</span></div>
+        <div class="week-days">
+          <div *ngFor="let d of weekDays; let i = index" class="week-day" [class.active]="activeDays.includes(i)">
+            {{ d }}
+          </div>
+        </div>
+      </div>
+  
+      <!-- TODAY'S GOALS -->
+      <div class="panel-card">
+        <div class="goals-header">
+          <h3>Today's Goals</h3>
+          <button class="btn-add">+ Goal</button>
+        </div>
+        <div class="goals-list">
+          <div *ngFor="let g of goals; let i = index" class="goal-item" (click)="toggleGoal(i)">
+            <div class="goal-check" [class.done]="g.done">
+              <span *ngIf="g.done">✓</span>
+            </div>
+            <span class="goal-text" [class.done]="g.done">{{ g.text }}</span>
+            <span class="goal-time">{{ g.done ? 'Done' : 'Today' }}</span>
+          </div>
+        </div>
+      </div>
+  
+    </aside>
+  
+  </div>

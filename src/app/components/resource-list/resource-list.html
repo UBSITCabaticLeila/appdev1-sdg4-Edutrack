@@ -1,1 +1,38 @@
-<p>resource-card works!</p>
+<!-- async pipe + loading state (Check-in 3) -->
+<div class="books-section">
+
+    <div *ngIf="isLoading" class="loading-state">
+      <div class="spinner"></div>
+      <p>Fetching resources...</p>
+    </div>
+  
+    <div *ngIf="!isLoading" class="books-grid">
+  
+      <div
+        *ngFor="let book of books"
+        class="book-card"
+        (click)="selectBook(book)"
+      >
+        <div class="book-cover">
+          <img
+            *ngIf="book.cover; else noCover"
+            [src]="book.cover"
+            [alt]="book.title"
+          >
+          <ng-template #noCover>
+            <span class="no-cover">📖</span>
+          </ng-template>
+        </div>
+        <div class="book-info">
+          <div class="book-title">{{ book.title }}</div>
+          <div class="book-author">{{ book.authors }}</div>
+          <span *ngIf="book.year" class="book-year">{{ book.year }}</span>
+        </div>
+      </div>
+  
+      <div *ngIf="books.length === 0" class="empty-state">
+        No resources found.
+      </div>
+  
+    </div>
+  </div>
