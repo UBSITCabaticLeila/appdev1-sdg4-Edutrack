@@ -11,6 +11,46 @@
   </div>
   <div class="nav-right">
     <span class="sdg-badge">SDG 4</span>
-    <button class="btn-cta" routerLink="/dashboard">Sign In</button>
+    <span *ngIf="isLoggedIn()" class="user-email">{{ currentUser() }}</span>
+    <button class="btn-cta" (click)="openLogin()" *ngIf="!isLoggedIn()">Sign In</button>
+    <button class="btn-cta btn-signout" (click)="signOut()" *ngIf="isLoggedIn()">Sign Out</button>
   </div>
 </nav>
+
+<!-- Login Modal -->
+<div class="modal-overlay" *ngIf="showModal()" (click)="closeModal()">
+  <div class="modal-box" (click)="$event.stopPropagation()">
+    <button class="modal-close" (click)="closeModal()">✕</button>
+    <div class="modal-logo">ET</div>
+    <h2>Welcome back</h2>
+    <p>Sign in to access your study dashboard</p>
+
+    <div class="modal-field">
+      <label>Email Address</label>
+      <input
+        type="email"
+        [(ngModel)]="email"
+        placeholder="you@example.com"
+        class="modal-input"
+      />
+    </div>
+
+    <div class="modal-field">
+      <label>Password</label>
+      <input
+        type="password"
+        [(ngModel)]="password"
+        placeholder="••••••••"
+        class="modal-input"
+        (keyup.enter)="signIn()"
+      />
+    </div>
+
+    <p class="error-msg" *ngIf="errorMsg">{{ errorMsg }}</p>
+
+    <button class="btn-signin-modal" (click)="signIn()">Sign In to EduTrack</button>
+
+    <p class="modal-footer">No account? <a href="#">Create one free →</a></p>
+    <p class="modal-guard-note">🔒 This auth flow is protected by a canActivate guard in Angular</p>
+  </div>
+</div>

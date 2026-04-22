@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;1,9..144,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 200;
   background: rgba(246,243,238,0.92);
@@ -6,36 +8,152 @@ nav {
   display: flex; align-items: center;
   padding: 0 24px; height: 62px; gap: 0;
 }
+
 .nav-brand {
   font-family: 'Fraunces', serif; font-weight: 700; font-size: 19px;
   color: #1a1614; display: flex; align-items: center; gap: 10px;
   margin-right: 32px; flex-shrink: 0; cursor: pointer;
 }
+
 .nav-logo {
   width: 34px; height: 34px; border-radius: 10px;
   background: #1b6e4e;
   display: flex; align-items: center; justify-content: center;
   color: #fff; font-size: 15px; font-weight: 700;
+  font-family: 'Fraunces', serif; letter-spacing: -0.5px;
 }
+
 .nav-links { display: flex; gap: 2px; flex: 1; }
+
 .nav-link {
   padding: 6px 15px; border-radius: 8px; font-size: 13.5px;
   font-weight: 500; color: #4a4440; cursor: pointer;
   transition: all 0.18s; border: none; background: none;
+  font-family: 'Plus Jakarta Sans', sans-serif;
 }
 .nav-link:hover { color: #1a1614; background: #f0ece4; }
 .nav-link.active { color: #1b6e4e; background: #d0ead9; }
+
 .nav-right { display: flex; align-items: center; gap: 10px; margin-left: auto; }
+
 .sdg-badge {
   font-size: 10.5px; padding: 3px 9px; border-radius: 5px;
   background: #fef3c7; color: #d97706;
   font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase;
   border: 1px solid rgba(217,119,6,0.2);
 }
+
 .btn-cta {
   padding: 8px 20px; border-radius: 9px;
   background: #1b6e4e; color: #fff;
   font-size: 13px; font-weight: 600; cursor: pointer;
   border: none; transition: all 0.18s;
+  font-family: 'Plus Jakarta Sans', sans-serif;
 }
-.btn-cta:hover { background: #145c3f; }
+.btn-cta:hover { background: #145c3f; transform: translateY(-1px); }
+
+.btn-signout {
+  background: #e53e3e;
+}
+.btn-signout:hover { background: #c53030; transform: translateY(-1px); }
+
+.user-email {
+  font-size: 12px; color: #1b6e4e; font-weight: 600;
+  background: #d0ead9; padding: 4px 10px; border-radius: 6px;
+}
+
+/* ── Modal ── */
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.modal-box {
+  position: relative;
+  background: #fff;
+  padding: 2.5rem 2rem;
+  border-radius: 20px;
+  width: 420px;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 0.75rem;
+  box-shadow: 0 8px 48px rgba(0,0,0,0.2);
+  text-align: center;
+}
+
+.modal-close {
+  position: absolute; top: 1rem; right: 1rem;
+  background: none; border: none;
+  font-size: 1.1rem; cursor: pointer; color: #999;
+  line-height: 1;
+}
+.modal-close:hover { color: #333; }
+
+.modal-logo {
+  background: #1b6e4e; color: white;
+  font-family: 'Fraunces', serif;
+  font-weight: 700; font-size: 1.1rem;
+  width: 52px; height: 52px; border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 0.25rem;
+}
+
+.modal-box h2 {
+  margin: 0;
+  font-family: 'Fraunces', serif;
+  font-size: 1.6rem;
+  font-style: italic;
+  color: #1a1614;
+}
+
+.modal-box > p {
+  margin: 0; color: #8a827a; font-size: 0.9rem;
+}
+
+.modal-field {
+  width: 100%; display: flex; flex-direction: column;
+  gap: 0.4rem; text-align: left; margin-top: 0.25rem;
+}
+
+.modal-field label {
+  font-size: 0.85rem; font-weight: 600; color: #4a4440;
+}
+
+.modal-input {
+  padding: 0.75rem 1rem;
+  border: 1.5px solid #e8e2d8;
+  border-radius: 9px; font-size: 0.95rem;
+  background: #f6f3ee; outline: none;
+  width: 100%; box-sizing: border-box;
+  transition: border 0.2s, background 0.2s;
+}
+.modal-input:focus {
+  border-color: #1b6e4e; background: #fff;
+}
+
+.error-msg {
+  color: #dc2626; font-size: 0.82rem;
+  width: 100%; text-align: left; margin: 0;
+}
+
+.btn-signin-modal {
+  width: 100%; background: #1b6e4e; color: white;
+  border: none; padding: 0.9rem;
+  border-radius: 10px; font-size: 1rem; font-weight: 600;
+  cursor: pointer; margin-top: 0.5rem;
+  transition: all 0.2s;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+.btn-signin-modal:hover {
+  background: #145c3f; transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(27,110,78,0.25);
+}
+
+.modal-footer { font-size: 0.85rem; color: #8a827a; }
+.modal-footer a { color: #1b6e4e; font-weight: 600; }
+
+.modal-guard-note {
+  font-size: 0.75rem; color: #b0a89e;
+}

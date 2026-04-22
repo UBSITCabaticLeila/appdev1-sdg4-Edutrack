@@ -1,6 +1,7 @@
 import {
   Title
-} from "./chunk-SHKND6LC.js";
+} from "./chunk-JAQGKHWR.js";
+import "./chunk-B44PVFNR.js";
 import {
   HashLocationStrategy,
   Location,
@@ -10,16 +11,16 @@ import {
   PathLocationStrategy,
   PlatformNavigation,
   ViewportScroller
-} from "./chunk-5JXLWJZI.js";
-import "./chunk-JFRO3TZP.js";
+} from "./chunk-IRFJPI5U.js";
 import {
   LOCATION_INITIALIZED,
   PlatformLocation
-} from "./chunk-YSQ6SUMF.js";
+} from "./chunk-RFNEFSBN.js";
 import {
   APP_BOOTSTRAP_LISTENER,
   ApplicationRef,
   Attribute,
+  BehaviorSubject,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Compiler,
@@ -29,8 +30,10 @@ import {
   DOCUMENT,
   DestroyRef,
   Directive,
+  EMPTY,
   ENVIRONMENT_INITIALIZER,
   ElementRef,
+  EmptyError,
   EnvironmentInjector,
   EventEmitter,
   HostAttributeToken,
@@ -44,27 +47,47 @@ import {
   NgModule,
   NgModuleFactory$1,
   NgZone,
+  Observable,
   Output,
   PendingTasksInternal,
   Renderer2,
   RuntimeError,
+  Subject,
+  Subscription,
   Version,
   ViewContainerRef,
+  __spreadProps,
+  __spreadValues,
   afterNextRender,
   booleanAttribute,
+  catchError,
+  combineLatest,
   computed,
+  concat,
+  concatMap,
   createEnvironmentInjector,
+  defer,
   effect,
+  filter,
+  finalize,
+  first,
   formatRuntimeError,
+  from,
   inject,
   input,
   isInjectable,
   isNgModule,
+  isObservable,
   isPromise,
   isStandalone,
   linkedSignal,
   makeEnvironmentProviders,
+  map,
+  mergeAll,
+  mergeMap,
+  of,
   performanceMarkFeature,
+  pipe,
   promiseWithResolvers,
   provideAppInitializer,
   provideEnvironmentInitializer,
@@ -73,6 +96,13 @@ import {
   runInInjectionContext,
   setClassMetadata,
   signal,
+  startWith,
+  switchMap,
+  take,
+  takeLast,
+  takeUntil,
+  tap,
+  throwError,
   untracked,
   ɵɵNgOnChangesFeature,
   ɵɵattribute,
@@ -92,42 +122,7 @@ import {
   ɵɵloadQuery,
   ɵɵqueryRefresh,
   ɵɵsanitizeUrlOrResourceUrl
-} from "./chunk-T6WOCTXP.js";
-import "./chunk-4YCCEXQQ.js";
-import {
-  defer,
-  isObservable
-} from "./chunk-J46EEYGT.js";
-import {
-  BehaviorSubject,
-  EMPTY,
-  EmptyError,
-  Observable,
-  Subject,
-  Subscription,
-  __spreadProps,
-  __spreadValues,
-  catchError,
-  combineLatest,
-  concat,
-  concatMap,
-  filter,
-  finalize,
-  first,
-  from,
-  map,
-  mergeAll,
-  mergeMap,
-  of,
-  pipe,
-  startWith,
-  switchMap,
-  take,
-  takeLast,
-  takeUntil,
-  tap,
-  throwError
-} from "./chunk-U7EDC2PH.js";
+} from "./chunk-4OUHZF5U.js";
 
 // node_modules/@angular/router/fesm2022/_router-chunk.mjs
 var PRIMARY_OUTLET = "primary";
@@ -556,7 +551,8 @@ var UrlParser = class {
     this.remaining = url;
   }
   parseRootSegment() {
-    this.consumeOptional("/");
+    while (this.consumeOptional("/")) {
+    }
     if (this.remaining === "" || this.peekStartsWith("?") || this.peekStartsWith("#")) {
       return new UrlSegmentGroup([], {});
     }
@@ -5967,7 +5963,7 @@ function mapToCanDeactivate(providers) {
 function mapToResolve(provider) {
   return (...params) => inject(provider).resolve(...params);
 }
-var VERSION = new Version("21.2.8");
+var VERSION = new Version("21.2.9");
 export {
   ActivatedRoute,
   ActivatedRouteSnapshot,

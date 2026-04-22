@@ -2,10 +2,11 @@ import {
   PlatformLocation,
   XhrFactory,
   parseCookieValue
-} from "./chunk-YSQ6SUMF.js";
+} from "./chunk-RFNEFSBN.js";
 import {
   APP_BOOTSTRAP_LISTENER,
   ApplicationRef,
+  CSP_NONCE,
   DOCUMENT,
   DestroyRef,
   EnvironmentInjector,
@@ -15,41 +16,39 @@ import {
   Injector,
   NgModule,
   NgZone,
+  Observable,
   PendingTasks,
   ResourceImpl,
   RuntimeError,
   TracingService,
   TransferState,
+  __objRest,
+  __spreadProps,
+  __spreadValues,
   assertInInjectionContext,
   computed,
+  concatMap,
   encapsulateResourceError,
+  filter,
+  finalize,
   formatRuntimeError,
   inject,
   linkedSignal,
   makeEnvironmentProviders,
   makeStateKey,
+  map,
+  of,
   performanceMarkFeature,
   runInInjectionContext,
   setClassMetadata,
   signal,
+  switchMap,
   truncateMiddle,
   ɵɵdefineInjectable,
   ɵɵdefineInjector,
   ɵɵdefineNgModule,
   ɵɵinject
-} from "./chunk-T6WOCTXP.js";
-import {
-  Observable,
-  __objRest,
-  __spreadProps,
-  __spreadValues,
-  concatMap,
-  filter,
-  finalize,
-  map,
-  of,
-  switchMap
-} from "./chunk-U7EDC2PH.js";
+} from "./chunk-4OUHZF5U.js";
 
 // node_modules/@angular/common/fesm2022/_module-chunk.mjs
 var HttpHeaders = class _HttpHeaders {
@@ -1603,6 +1602,9 @@ var JsonpClientBackend = class _JsonpClientBackend {
   callbackMap;
   document;
   resolvedPromise = Promise.resolve();
+  nonce = inject(CSP_NONCE, {
+    optional: true
+  });
   constructor(callbackMap, document) {
     this.callbackMap = callbackMap;
     this.document = document;
@@ -1624,6 +1626,9 @@ var JsonpClientBackend = class _JsonpClientBackend {
       const url = req.urlWithParams.replace(/=JSONP_CALLBACK(&|$)/, `=${callback}$1`);
       const node = this.document.createElement("script");
       node.src = url;
+      if (this.nonce) {
+        node.setAttribute("nonce", this.nonce);
+      }
       let body = null;
       let finished = false;
       this.callbackMap[callback] = (data) => {
@@ -2487,4 +2492,4 @@ export {
   withHttpTransferCache,
   httpResource
 };
-//# sourceMappingURL=chunk-JFRO3TZP.js.map
+//# sourceMappingURL=chunk-B44PVFNR.js.map

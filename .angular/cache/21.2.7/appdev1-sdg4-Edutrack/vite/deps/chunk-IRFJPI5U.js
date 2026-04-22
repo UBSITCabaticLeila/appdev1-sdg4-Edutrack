@@ -1,6 +1,6 @@
 import {
   PlatformLocation
-} from "./chunk-YSQ6SUMF.js";
+} from "./chunk-RFNEFSBN.js";
 import {
   ApplicationRef,
   Attribute,
@@ -31,9 +31,12 @@ import {
   Renderer2,
   RendererStyleFlags2,
   RuntimeError,
+  Subject,
   TemplateRef,
   Version,
   ViewContainerRef,
+  __spreadProps,
+  __spreadValues,
   booleanAttribute,
   createNgModule,
   findLocaleData,
@@ -62,12 +65,7 @@ import {
   ɵɵinject,
   ɵɵinjectAttribute,
   ɵɵstyleProp
-} from "./chunk-T6WOCTXP.js";
-import {
-  Subject,
-  __spreadProps,
-  __spreadValues
-} from "./chunk-U7EDC2PH.js";
+} from "./chunk-4OUHZF5U.js";
 
 // node_modules/@angular/common/fesm2022/_location-chunk.mjs
 function joinWithSlash(start, end) {
@@ -3296,7 +3294,7 @@ function isPlatformBrowser(platformId) {
 function isPlatformServer(platformId) {
   return platformId === PLATFORM_SERVER_ID;
 }
-var VERSION = new Version("21.2.8");
+var VERSION = new Version("21.2.9");
 var ViewportScroller = class _ViewportScroller {
   static ɵprov = ɵɵdefineInjectable({
     token: _ViewportScroller,
@@ -4663,4 +4661,4 @@ export {
   PRECONNECT_CHECK_BLOCKLIST,
   NgOptimizedImage
 };
-//# sourceMappingURL=chunk-5JXLWJZI.js.map
+//# sourceMappingURL=chunk-IRFJPI5U.js.map
