@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar';
 
@@ -9,4 +9,9 @@ import { NavbarComponent } from './components/navbar/navbar';
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
-export class AppComponent {}
+export class AppComponent implements OnInit {
+  ngOnInit() {
+    // TEMP: remove this once real login is implemented
+    localStorage.setItem('edutrack_user', 'Guest');
+  }
+}

@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink, RouterLinkActive, Router } from '@angular/router';
@@ -19,6 +19,14 @@ export class NavbarComponent {
   errorMsg = '';
 
   constructor(private router: Router) {}
+
+  // Sync auth state if sign-out happens from another component (e.g. Dashboard)
+  @HostListener('window:focus')
+  syncAuthState(): void {
+    const stored = localStorage.getItem('edutrack_user');
+    this.isLoggedIn.set(stored !== null);
+    this.currentUser.set(stored || '');
+  }
 
   openLogin(): void {
     this.showModal.set(true);
