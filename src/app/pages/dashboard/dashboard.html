@@ -21,9 +21,6 @@
       <button class="sidebar-link" [class.active]="activeSection() === 'goals'" (click)="setSection('goals')">
         Daily Goals
       </button>
-      <button class="sidebar-link" [class.active]="activeSection() === 'pomo'" (click)="setSection('pomo')">
-        Pomodoro Timer
-      </button>
     </nav>
 
     <div class="sidebar-section-label">DISCOVER</div>
@@ -41,7 +38,6 @@
         <h1>{{ greeting }}, Scholar!</h1>
         <p class="dash-date">{{ today }}</p>
       </div>
-      <button class="btn-add-subject" (click)="openAddSubject()">+ Add Subject</button>
     </div>
 
     <!-- OVERVIEW -->
@@ -124,28 +120,6 @@
         </div>
         <div class="goals-summary">
           {{ completedGoals() }} of {{ goals.length }} goals completed today
-        </div>
-      </div>
-    </ng-container>
-
-    <!-- POMODORO -->
-    <ng-container *ngIf="activeSection() === 'pomo'">
-      <div class="pomo-full">
-        <div class="pomo-full-mode">{{ pomoBreak() ? 'SHORT BREAK ☕' : 'FOCUS SESSION 🎯' }}</div>
-        <div class="pomo-full-time">{{ pomoDisplay() }}</div>
-        <div class="pomo-controls">
-          <button class="btn-pomo-start" (click)="togglePomo()">
-            {{ pomoRunning() ? '⏸ Pause' : '▶ Start' }}
-          </button>
-          <button class="btn-pomo-reset" (click)="resetPomo()">↺ Reset</button>
-        </div>
-        <div class="pomo-dots">
-          <span *ngFor="let d of [0,1,2,3,4,5,6,7]"
-                class="pomo-dot" [class.done]="d < pomosCompleted()"></span>
-        </div>
-        <div class="pomo-sessions">{{ pomosCompleted() }} of 8 sessions complete today</div>
-        <div class="pomo-tip">
-          <em>Study for 25 minutes, then take a 5-minute break. Repeat 4 times for a long break!</em>
         </div>
       </div>
     </ng-container>
@@ -252,14 +226,3 @@
     <button class="form-btn" (click)="submitGoal()">Add Goal</button>
   </div>
 </div>
-<!-- Footer -->
-<footer class="dash-footer">
-  <div class="dash-footer-inner">
-    <div class="dash-footer-brand">
-      <div class="dash-footer-logo">ET</div>
-      <span>EduTrack</span>
-    </div>
-    <p class="dash-footer-center">University of Baguio · APPDEV1 Project · S.Y. 2025–2026</p>
-    <p class="dash-footer-right">SDG 4 — Quality Education</p>
-  </div>
-</footer>

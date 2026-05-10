@@ -1,0 +1,116 @@
+.notfound-page {
+    min-height: 100vh;
+    background: #f6f3ee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 62px 2rem 2rem;
+    box-sizing: border-box;
+  }
+  
+  .notfound-card {
+    background: #fff;
+    border-radius: 24px;
+    padding: 3rem 2.5rem;
+    max-width: 480px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 4px 32px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .notfound-code {
+    font-size: 6rem;
+    font-weight: 800;
+    color: #f0ece4;
+    line-height: 1;
+    font-family: 'Fraunces', serif;
+    letter-spacing: -4px;
+  }
+  
+  .notfound-icon {
+    font-size: 3rem;
+    margin-top: -1.5rem;
+  }
+  
+  .notfound-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #1a1614;
+    margin: 0;
+    font-style: italic;
+    font-family: 'Fraunces', serif;
+  }
+  
+  .notfound-desc {
+    font-size: 0.95rem;
+    color: #6a6460;
+    line-height: 1.7;
+    margin: 0;
+    max-width: 320px;
+  }
+  
+  .notfound-actions {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .btn-primary {
+    padding: 10px 24px;
+    background: #1b6e4e;
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: background 0.18s;
+  }
+  .btn-primary:hover { background: #145c3f; }
+  
+  .btn-secondary {
+    padding: 10px 24px;
+    background: #fff;
+    color: #1b6e4e;
+    font-weight: 700;
+    font-size: 14px;
+    border-radius: 10px;
+    text-decoration: none;
+    border: 1.5px solid rgba(27,110,78,0.3);
+    transition: all 0.18s;
+  }
+  .btn-secondary:hover {
+    border-color: #1b6e4e;
+    background: #f0faf4;
+  }
+  
+  .sdg-note {
+    background: #f0faf4;
+    border-left: 4px solid #1b6e4e;
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    font-size: 0.82rem;
+    color: #444;
+    text-align: left;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 0.5rem;
+  }
+  
+  .sdg-badge {
+    background: #1b6e4e;
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    margin-right: 0.5rem;
+  }
+
+
+  

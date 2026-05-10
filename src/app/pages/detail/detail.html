@@ -1,53 +1,63 @@
 <div class="detail-page">
-    <a class="back-btn" routerLink="/books">← Back to Books</a>
+    <a class="back-btn" href="/books">← Back to Books</a>
   
     <ng-container *ngIf="book$ | async as book; else loading">
       <div *ngIf="book; else notFound" class="detail-card">
   
-        <div class="detail-header">
-          <h1 class="detail-title">{{ book.title | titlecase }}</h1>
-          <span class="detail-type" *ngIf="book.type?.key">
-            {{ book.type.key | uppercase }}
-          </span>
+        <div class="detail-cover-row">
+          <div class="detail-cover-wrap" *ngIf="book.covers?.length">
+            <img
+              [src]="'https://covers.openlibrary.org/b/id/' + book.covers[0] + '-L.jpg'"
+              [alt]="book.title"
+              class="detail-cover"
+            />
+          </div>
+          <div class="detail-cover-placeholder" *ngIf="!book.covers?.length">📖</div>
+  
+          <div class="detail-info">
+            <div class="detail-header">
+              <h1 class="detail-title">{{ book.title | titlecase }}</h1>
+              <span class="detail-type" *ngIf="book.type?.key">{{ book.type.key | uppercase }}</span>
+            </div>
+  
+            <div class="detail-meta">
+              <div class="meta-item" *ngIf="book.first_publish_date">
+                <span class="meta-label">First Published</span>
+                <span class="meta-value">{{ book.first_publish_date }}</span>
+              </div>
+              <div class="meta-item" *ngIf="book.subjects?.length">
+                <span class="meta-label">Subjects</span>
+                <span class="meta-value">{{ book.subjects.slice(0,3).join(', ') | titlecase }}</span>
+              </div>
+              <div class="meta-item" *ngIf="book.subject_places?.length">
+                <span class="meta-label">Places</span>
+                <span class="meta-value">{{ book.subject_places[0] | titlecase }}</span>
+              </div>
+            </div>
+  
+            <a class="open-book-btn" [href]="'https://openlibrary.org' + book.key" target="_blank">Open on Open Library ↗</a>
+          </div>
         </div>
   
         <div class="detail-body">
-          <p *ngIf="book.description" class="detail-desc">
-            {{ book.description?.value || book.description }}
-          </p>
-          <p *ngIf="!book.description" class="detail-desc muted">
-            No description available for this book.
-          </p>
-  
-          <div class="detail-meta">
-            <div class="meta-item" *ngIf="book.first_publish_date">
-              <span class="meta-label">First Published</span>
-              <span class="meta-value">{{ book.first_publish_date }}</span>
-            </div>
-            <div class="meta-item" *ngIf="book.subjects?.length">
-              <span class="meta-label">Subjects</span>
-              <span class="meta-value">{{ book.subjects[0] | titlecase }}</span>
-            </div>
-            <div class="meta-item" *ngIf="book.subject_places?.length">
-              <span class="meta-label">Subject Places</span>
-              <span class="meta-value">{{ book.subject_places[0] | titlecase }}</span>
-            </div>
-          </div>
-  
+          <h2 class="section-heading">About this Book</h2>
+          <p *ngIf="book.description" class="detail-desc">{{ book.description?.value || book.description }}</p>
+          <p *ngIf="!book.description" class="detail-desc muted">No description available for this book.</p>
           <div class="sdg-note">
             <span class="sdg-badge">SDG 4</span>
             Free and open-access books support quality education for everyone.
           </div>
         </div>
-      </div>
   
-      <ng-template #notFound>
-        <div class="not-found-state">
-          <p>📭 Book details could not be loaded.</p>
-          <a routerLink="/books">← Return to Books</a>
-        </div>
-      </ng-template>
+      </div>
     </ng-container>
+  
+    <ng-template #notFound>
+      <div class="not-found-state">
+        <p>Book details could not be loaded.</p>
+        <a href="/books">← Return to Books</a>
+      </div>
+    </ng-template>
   
     <ng-template #loading>
       <div class="loading-state">

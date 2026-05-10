@@ -1,115 +1,109 @@
 <div class="books-page">
-
-    <!-- PAGE HEADER -->
-    <div class="books-header">
-      <div class="books-header-content">
-        <div class="sdg-pill">
-          <span class="sdg-dot"></span>
-          Open Library API
-        </div>
-        <h1>Discover <em>Free Books</em></h1>
-        <p class="books-desc">
-          Search millions of open-access books using the Open Library API.
-          Find study materials for any subject — completely free.
-        </p>
-  
-        <div class="search-wrap">
-          <input
-            class="search-input"
-            type="text"
-            #searchInput
-            placeholder="Search by title, author, or subject…"
-            (keydown)="onKeydown($event, searchInput.value)"
-          />
-          <button class="search-btn" (click)="onSearch(searchInput.value)">
-            Search Books
-          </button>
-        </div>
-      </div>
-    </div>
-  
-    <!-- BODY -->
-    <div class="books-body">
-  
-      <!-- CATEGORY PILLS -->
-      <div class="subject-pills">
-        <button
-          *ngFor="let cat of categories"
-          class="subject-pill"
-          [class.active]="activeCategory() === cat.label"
-          (click)="onCategory(cat.term, cat.label)"
-        >
-          {{ cat.label }}
-        </button>
-      </div>
-  
-      <!-- LOADING STATE -->
-      <ng-container *ngIf="isLoading()">
-        <div class="loading-state">
-          <div class="loading-grid">
-            <div *ngFor="let i of [1,2,3,4,5,6,7,8]" class="skeleton-card">
-              <div class="skeleton-cover"></div>
-              <div class="skeleton-lines">
-                <div class="skeleton-line lg"></div>
-                <div class="skeleton-line md"></div>
-                <div class="skeleton-line sm"></div>
-              </div>
-            </div>
-          </div>
-          <div class="loading-label">
-            <span class="spinner"></span>
-            Fetching books from Open Library…
-          </div>
-        </div>
-      </ng-container>
-  
-      <!-- BOOKS -->
-      <ng-container *ngIf="!isLoading()">
-  
-        <div class="section-meta" *ngIf="books().length > 0">
-          <span class="section-count">
-            {{ books().length }} books found for "{{ activeCategory() || searchQuery() }}" — showing top {{ books().length }}
-          </span>
-          <span class="section-src">via Open Library API</span>
-        </div>
-  
-        <div *ngIf="books().length === 0" class="empty-state">
-          <div class="empty-icon">📭</div>
-          <h3>No books found</h3>
-          <p>Try a different search term like "algorithms", "networks", or "databases".</p>
-        </div>
-  
-        <div class="books-grid" *ngIf="books().length > 0">
-          <ng-container *ngFor="let book of books(); trackBy: trackByKey">
-            <a class="book-card" [href]="getDetailUrl(book)">
-              <div class="book-cover-wrap">
-                <img *ngIf="book.cover" [src]="book.cover" [alt]="book.title" class="book-cover" loading="lazy"/>
-                <div *ngIf="!book.cover" class="book-cover-placeholder">📖</div>
-              </div>
-              <div class="book-meta">
-                <div class="book-title">{{ book.title | titlecase }}</div>
-                <p class="book-author">{{ book.authors | uppercase }}</p>
-                <span class="book-year" *ngIf="book.year">{{ book.year }}</span>
-              </div>
-            </a>
-          </ng-container>
-        </div>
-  
-      </ng-container>
-  
-    </div>
-    <!-- ↑ books-body ends here -->
-  
-    <!-- FOOTER — outside books-body -->
-    <footer class="books-footer">
-      <div class="footer-brand">
-        <div class="footer-logo">ET</div>
-        <span>EduTrack</span>
-      </div>
-      <div class="footer-info">
-        Book data powered by <strong>Open Library API</strong> openlibrary.org
-      </div>
-      <div class="footer-sdg">SDG 4 — Quality Education</div>
-    </footer>
-  
-  </div>
+  <!-- PAGE HEADER -->
+<div class="books-header">
+<div class="books-header-content">
+<div class="sdg-pill">
+<span class="sdg-dot"></span>
+        Open Library API
+</div>
+<h1>Discover <em>Books</em></h1>
+<p class="books-desc">
+        Search millions of open-access books using the Open Library API.
+        Find study materials for any subject — completely free.
+</p>
+<div class="search-wrap">
+<input
+class="search-input"
+type="text"
+#searchInput
+placeholder="Search by title, author, or subject…"
+(keydown)="onKeydown($event, searchInput.value)"
+/>
+<button class="search-btn" (click)="onSearch(searchInput.value)">
+          Search Books
+</button>
+</div>
+</div>
+</div>
+<!-- BODY -->
+<div class="books-body">
+<!-- CATEGORY PILLS -->
+<div class="subject-pills">
+<button
+*ngFor="let cat of categories"
+class="subject-pill"
+[class.active]="activeCategory() === cat.label"
+(click)="onCategory(cat.term, cat.label)"
+>
+        {{ cat.label }}
+</button>
+</div>
+<!-- LOADING STATE -->
+<ng-container *ngIf="isLoading()">
+<div class="loading-state">
+<div class="loading-grid">
+<div *ngFor="let i of [1,2,3,4,5,6,7,8]" class="skeleton-card">
+<div class="skeleton-cover"></div>
+<div class="skeleton-lines">
+<div class="skeleton-line lg"></div>
+<div class="skeleton-line md"></div>
+<div class="skeleton-line sm"></div>
+</div>
+</div>
+</div>
+<div class="loading-label">
+<span class="spinner"></span>
+          Fetching books from Open Library…
+</div>
+</div>
+</ng-container>
+<!-- BOOKS -->
+<ng-container *ngIf="!isLoading()">
+<div class="section-meta" *ngIf="books().length > 0">
+<span class="section-count">
+          {{ books().length }} books found for "{{ activeCategory() || searchQuery() }}" — showing top {{ books().length }}
+</span>
+<span class="section-src">via Open Library API</span>
+</div>
+<div *ngIf="books().length === 0" class="empty-state">
+<div class="empty-icon">📭</div>
+<h3>No books found</h3>
+<p>Try a different search term like "algorithms", "networks", or "databases".</p>
+</div>
+<div class="books-grid" *ngIf="books().length > 0">
+<ng-container *ngFor="let book of books(); trackBy: trackByKey">
+<a class="book-card" [href]="getDetailUrl(book)" target="_blank">
+<div class="book-cover-wrap">
+<img
+*ngIf="book.cover"
+[src]="book.cover"
+[alt]="book.title"
+class="book-cover"
+loading="lazy"
+/>
+<div *ngIf="!book.cover" class="book-cover-placeholder">📖</div>
+</div>
+<div class="book-meta">
+<div class="book-title">{{ book.title | titlecase }}</div>
+<p class="book-author">{{ book.authors }}</p>
+<div class="book-footer">
+<span class="book-year" *ngIf="book.year">{{ book.year }}</span>
+<a class="book-link" [href]="getDetailUrl(book)" target="_blank">Open Book</a>
+</div>
+</div>
+</a>
+</ng-container>
+</div>
+</ng-container>
+</div>
+<footer class="books-footer">
+<div class="footer-brand">
+<div class="footer-logo">ET</div>
+<span>EduTrack</span>
+</div>
+<div class="footer-info">
+      Book data powered by <strong>Open Library API</strong> openlibrary.org
+</div>
+<div class="footer-sdg">SDG 4 — Quality Education</div>
+</footer>
+</div>

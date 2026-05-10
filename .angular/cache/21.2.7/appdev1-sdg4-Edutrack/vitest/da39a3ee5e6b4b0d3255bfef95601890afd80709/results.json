@@ -1,1 +1,1 @@
-{"version":"4.1.5","results":[["appdev1-sdg4-Edutrack:src/app/guards/auth.guard.spec.ts",{"duration":0,"failed":true}],["appdev1-sdg4-Edutrack:src/app/components/subject-card/subject-card.spec.ts",{"duration":45.76083300000005,"failed":false}]]}
+{"version":"4.1.5","results":[["appdev1-sdg4-Edutrack:src/app/guards/auth.guard.spec.ts",{"duration":0,"failed":true}],["appdev1-sdg4-Edutrack:src/app/components/subject-card/subject-card.spec.ts",{"duration":46.45220800000004,"failed":false}]]}

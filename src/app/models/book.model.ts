@@ -6,8 +6,9 @@ export interface Book {
   authors: string;
   year: number | string;
   cover: string;
+  description?: string;
+  link?: string;
 }
-
 export interface OpenLibraryResponse {
   numFound: number;
   docs: OpenLibraryDoc[];

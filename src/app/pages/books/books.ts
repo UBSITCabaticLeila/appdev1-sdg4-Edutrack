@@ -76,7 +76,7 @@ export class BooksComponent implements OnInit, OnDestroy {
   }
 
   getDetailUrl(book: Book): string {
-    return `/detail/${encodeURIComponent(book.key.replace('/works/', ''))}`;
+    return book.link ?? `https://openlibrary.org${book.key}`;
   }
 
   trackByKey(_: number, book: Book): string {
