@@ -1,18 +1,26 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
- 
+import { Component, inject } from '@angular/core';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { ResourceService } from '../../services/resource';
+import { Observable, switchMap, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+
 @Component({
   selector: 'app-detail',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, RouterLink],
   templateUrl: './detail.html',
   styleUrl: './detail.css'
 })
 export class DetailComponent {
-  id: string | null = null;
- 
-  constructor(private route: ActivatedRoute) {
-    this.id = this.route.snapshot.paramMap.get('id');
-  }
+  private route = inject(ActivatedRoute);
+  private resource = inject(ResourceService);
+
+  book$: Observable<any> = this.route.paramMap.pipe(
+    switchMap(params => {
+      const id = params.get('id');
+      return id ? this.resource.getBookDetail(id) : of(null);
+    }),
+    catchError(() => of(null))
+  );
 }
- 

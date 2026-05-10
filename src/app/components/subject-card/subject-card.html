@@ -1,0 +1,18 @@
+<div class="subject-card" [style.border-left-color]="subject.color">
+    <div class="subject-header">
+      <span class="subject-name">{{ subject.name }}</span>
+      <span class="subject-updated">{{ subject.updated }}</span>
+    </div>
+    <div class="subject-progress-bar">
+      <div
+        class="subject-progress-fill"
+        [style.width.%]="subject.progress"
+        [style.background-color]="subject.color">
+      </div>
+    </div>
+    <div class="subject-footer">
+      <span>Chapter {{ subject.chapter }} of {{ subject.total }}</span>
+      <span class="subject-percent">{{ subject.progress }}%</span>
+    </div>
+    <button class="update-btn" (click)="onUpdate()">Mark Updated</button>
+  </div>

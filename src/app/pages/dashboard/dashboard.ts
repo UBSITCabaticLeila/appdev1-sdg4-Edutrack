@@ -2,15 +2,7 @@ import { Component, computed, signal, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-
-interface Subject {
-  name: string;
-  chapter: number;
-  total: number;
-  progress: number;
-  color: string;
-  updated: string;
-}
+import { SubjectCardComponent, Subject } from '../../components/subject-card/subject-card';
 
 interface Goal {
   text: string;
@@ -20,15 +12,15 @@ interface Goal {
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule],
+  imports: [CommonModule, RouterModule, FormsModule, SubjectCardComponent],
   templateUrl: './dashboard.html',
-  styleUrls: ['./dashboard.css'] // ✅ FIXED
+  styleUrls: ['./dashboard.css']
 })
 export class DashboardComponent implements OnDestroy {
 
   // ── Auth ──────────────────────────────────────────
-  isLoggedIn = signal(false);
-  currentUser = signal('Guest');
+  isLoggedIn = signal(localStorage.getItem('edutrack_user') !== null);
+  currentUser = signal(localStorage.getItem('edutrack_user') || 'Guest');
 
   getUserInitial(): string {
     const name = this.currentUser();
@@ -36,6 +28,7 @@ export class DashboardComponent implements OnDestroy {
   }
 
   signOut() {
+    localStorage.removeItem('edutrack_user');
     this.isLoggedIn.set(false);
     this.currentUser.set('Guest');
   }
@@ -93,15 +86,19 @@ export class DashboardComponent implements OnDestroy {
   submitSubject() {
     const name = this.newSubject.name.trim();
     if (!name) return;
-
     const total = this.newSubject.total ?? 10;
     const chapter = this.newSubject.chapter ?? 0;
     const progress = Math.round(Math.min((chapter / total) * 100, 100));
     const color = this.subjectColors[this.colorIdx % this.subjectColors.length];
     this.colorIdx++;
-
     this.subjects.push({ name, chapter, total, progress, color, updated: 'Just now' });
     this.closeAddSubject();
+  }
+
+  // ── @Output() handler from SubjectCardComponent ───
+  onProgressUpdated(subjectName: string) {
+    const subject = this.subjects.find(s => s.name === subjectName);
+    if (subject) subject.updated = 'Just now';
   }
 
   goals: Goal[] = [
@@ -147,6 +144,50 @@ export class DashboardComponent implements OnDestroy {
     }
   }
 
+  // ── Motivation Quotes ─────────────────────────────
+  motivationQuotes = [
+    { text: 'The secret of getting ahead is getting started.', author: 'Mark Twain', emoji: '🚀' },
+    { text: "It always seems impossible until it's done.", author: 'Nelson Mandela', emoji: '💪' },
+    { text: 'Success is the sum of small efforts repeated day in and day out.', author: 'Robert Collier', emoji: '✨' },
+    { text: "Don't watch the clock; do what it does. Keep going.", author: 'Sam Levenson', emoji: '⏰' },
+    { text: "Believe you can and you're halfway there.", author: 'Theodore Roosevelt', emoji: '🌟' },
+    { text: "You don't have to be great to start, but you have to start to be great.", author: 'Zig Ziglar', emoji: '🎯' },
+    { text: 'The future belongs to those who believe in the beauty of their dreams.', author: 'Eleanor Roosevelt', emoji: '🌈' },
+  ];
+
+  currentMotivationIndex = signal(Math.floor(Math.random() * 7));
+
+  get currentMotivation() {
+    return this.motivationQuotes[this.currentMotivationIndex()];
+  }
+
+  nextQuote() {
+    this.currentMotivationIndex.update(i => (i + 1) % this.motivationQuotes.length);
+  }
+
+  copyQuote() {
+    const q = this.currentMotivation;
+    navigator.clipboard.writeText(`"${q.text}" — ${q.author}`);
+    this.showCopied.set(true);
+    setTimeout(() => this.showCopied.set(false), 2000);
+  }
+
+  showCopied = signal(false);
+
+  // ── Achievements ──────────────────────────────────
+  achievements = [
+    { id: 1, icon: '🔥', title: 'First Streak', desc: 'Study 3 days in a row', unlocked: true },
+    { id: 2, icon: '📚', title: 'Bookworm', desc: 'Search 5 books', unlocked: true },
+    { id: 3, icon: '⏱️', title: 'Focus Mode', desc: 'Complete 4 Pomodoros', unlocked: false },
+    { id: 4, icon: '🎯', title: 'Goal Crusher', desc: 'Complete all daily goals', unlocked: false },
+    { id: 5, icon: '📖', title: 'Chapter Master', desc: 'Finish a subject', unlocked: false },
+    { id: 6, icon: '🏆', title: '7-Day Warrior', desc: 'Study 7 days straight', unlocked: false },
+  ];
+
+  get unlockedCount() {
+    return this.achievements.filter(a => a.unlocked).length;
+  }
+
   // ── Pomodoro ──────────────────────────────────────
   pomoRunning = signal(false);
   pomoBreak = signal(false);
@@ -181,7 +222,6 @@ export class DashboardComponent implements OnDestroy {
             this.pomoInterval = null;
           }
           this.pomoRunning.set(false);
-
           if (!this.pomoBreak()) {
             this.pomosCompleted.update(n => n + 1);
             this.pomoBreak.set(true);

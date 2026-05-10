@@ -1,0 +1,72 @@
+.subject-card {
+    background: white;
+    border-left: 4px solid #ccc;
+    border-radius: 12px;
+    padding: 1.2rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  
+  .subject-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  
+  .subject-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #1a1a1a;
+  }
+  
+  .subject-updated {
+    font-size: 0.75rem;
+    color: #999;
+  }
+  
+  .subject-progress-bar {
+    height: 8px;
+    background: #f0f0f0;
+    border-radius: 99px;
+    overflow: hidden;
+  }
+  
+  .subject-progress-fill {
+    height: 100%;
+    border-radius: 99px;
+    transition: width 0.3s ease;
+  }
+  
+  .subject-footer {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: #666;
+  }
+  
+  .subject-percent {
+    font-weight: 700;
+  }
+  
+  .update-btn {
+    background: #f4f4f4;
+    border: none;
+    border-radius: 8px;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+    cursor: pointer;
+    color: #444;
+    align-self: flex-start;
+    transition: background 0.2s;
+  }
+  
+  .update-btn:hover {
+    background: #e0e0e0;
+  }
+  @media (max-width: 768px) {
+    .subject-card {
+      padding: 1rem;
+    }
+  }

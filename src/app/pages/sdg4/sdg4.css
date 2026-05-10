@@ -1,0 +1,232 @@
+.sdg4-page {
+    background-color: #f0ede6;
+    min-height: 100vh;
+    padding: 2rem;
+    font-family: inherit;
+  }
+  
+  /* Hero */
+  .hero {
+    background-color: #2a6048;
+    border-radius: 20px;
+    padding: 3rem;
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+    color: white;
+  }
+  .hero-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #a8d5b5;
+    margin-bottom: 1rem;
+  }
+  .hero-title {
+    font-size: 3rem;
+    font-style: italic;
+    font-weight: 700;
+    margin: 0 0 1.5rem 0;
+    line-height: 1.2;
+  }
+  .hero-quote {
+    font-size: 1rem;
+    color: #c8e6c9;
+    max-width: 600px;
+    line-height: 1.6;
+  }
+  .hero-watermark {
+    position: absolute;
+    right: 3rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 12rem;
+    font-weight: 900;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.08);
+    line-height: 1;
+    user-select: none;
+  }
+  
+  /* Stats */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .stat-card {
+    padding: 2rem 1.5rem;
+    text-align: center;
+    border-right: 1px solid #eee;
+  }
+  .stat-card:last-child {
+    border-right: none;
+  }
+  .stat-number {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 700;
+    font-style: italic;
+    color: #2a6048;
+    margin-bottom: 0.5rem;
+  }
+  .stat-label {
+    font-size: 0.85rem;
+    color: #666;
+    line-height: 1.4;
+  }
+  
+  /* Section Labels */
+  .section-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #2a6048;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  .section-title {
+    font-size: 2rem;
+    font-style: italic;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0 0 1.5rem 0;
+  }
+  
+  /* Targets */
+  .targets {
+    margin-bottom: 2rem;
+  }
+  .target-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+  .target-card {
+    background: white;
+    border-radius: 14px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+  .target-id {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #2a6048;
+    letter-spacing: 0.05em;
+    margin: 0 0 0.4rem 0;
+  }
+  .target-title {
+    font-size: 1rem;
+    font-weight: 700;
+    font-style: italic;
+    color: #1a1a1a;
+    margin: 0 0 0.5rem 0;
+  }
+  .target-text {
+    font-size: 0.85rem;
+    color: #555;
+    line-height: 1.5;
+    margin: 0;
+  }
+  
+  /* Contribution */
+  .contribution {
+    background: white;
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    margin-bottom: 2rem;
+  }
+  .contrib-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+  .contrib-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .contrib-icon {
+    font-size: 1.8rem;
+  }
+  .contrib-card h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0;
+  }
+  .contrib-card p {
+    font-size: 0.85rem;
+    color: #555;
+    line-height: 1.6;
+    margin: 0;
+  }
+  
+  /* Footer */
+  .sdg4-footer {
+    background-color: #ffffff;
+    color: #555;
+    padding: 1.5rem 2rem;
+  }
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #1a1a1a;
+    font-weight: 600;
+  }
+  .footer-logo {
+    background: #2a6048;
+    color: white;
+    font-weight: 700;
+    font-size: 0.75rem;
+    padding: 0.3rem 0.5rem;
+    border-radius: 6px;
+  }
+  .footer-center {
+    font-size: 0.85rem;
+    margin: 0;
+  }
+  .footer-right {
+    font-size: 0.85rem;
+    margin: 0;
+  }
+  @media (max-width: 768px) {
+    .sdg4-page {
+      padding: 1rem;
+    }
+    .hero-title {
+      font-size: 2rem;
+    }
+    .hero-watermark {
+      display: none;
+    }
+    .stats {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .target-grid {
+      grid-template-columns: 1fr;
+    }
+    .contrib-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .footer-inner {
+      flex-direction: column;
+      text-align: center;
+    }
+  }

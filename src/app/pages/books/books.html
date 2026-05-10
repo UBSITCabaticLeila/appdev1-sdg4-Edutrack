@@ -87,8 +87,8 @@
                 <div *ngIf="!book.cover" class="book-cover-placeholder">📖</div>
               </div>
               <div class="book-meta">
-                <div class="book-title">{{ book.title }}</div>
-                <p class="book-author">{{ book.authors }}</p>
+                <div class="book-title">{{ book.title | titlecase }}</div>
+                <p class="book-author">{{ book.authors | uppercase }}</p>
                 <span class="book-year" *ngIf="book.year">{{ book.year }}</span>
               </div>
             </a>

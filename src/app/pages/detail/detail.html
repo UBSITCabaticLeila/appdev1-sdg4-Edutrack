@@ -1,2 +1,58 @@
-<h1>Detail Page</h1>
-<p>Showing details for resource ID.</p>
+<div class="detail-page">
+    <a class="back-btn" routerLink="/books">← Back to Books</a>
+  
+    <ng-container *ngIf="book$ | async as book; else loading">
+      <div *ngIf="book; else notFound" class="detail-card">
+  
+        <div class="detail-header">
+          <h1 class="detail-title">{{ book.title | titlecase }}</h1>
+          <span class="detail-type" *ngIf="book.type?.key">
+            {{ book.type.key | uppercase }}
+          </span>
+        </div>
+  
+        <div class="detail-body">
+          <p *ngIf="book.description" class="detail-desc">
+            {{ book.description?.value || book.description }}
+          </p>
+          <p *ngIf="!book.description" class="detail-desc muted">
+            No description available for this book.
+          </p>
+  
+          <div class="detail-meta">
+            <div class="meta-item" *ngIf="book.first_publish_date">
+              <span class="meta-label">First Published</span>
+              <span class="meta-value">{{ book.first_publish_date }}</span>
+            </div>
+            <div class="meta-item" *ngIf="book.subjects?.length">
+              <span class="meta-label">Subjects</span>
+              <span class="meta-value">{{ book.subjects[0] | titlecase }}</span>
+            </div>
+            <div class="meta-item" *ngIf="book.subject_places?.length">
+              <span class="meta-label">Subject Places</span>
+              <span class="meta-value">{{ book.subject_places[0] | titlecase }}</span>
+            </div>
+          </div>
+  
+          <div class="sdg-note">
+            <span class="sdg-badge">SDG 4</span>
+            Free and open-access books support quality education for everyone.
+          </div>
+        </div>
+      </div>
+  
+      <ng-template #notFound>
+        <div class="not-found-state">
+          <p>📭 Book details could not be loaded.</p>
+          <a routerLink="/books">← Return to Books</a>
+        </div>
+      </ng-template>
+    </ng-container>
+  
+    <ng-template #loading>
+      <div class="loading-state">
+        <div class="spinner"></div>
+        <p>Loading book details…</p>
+      </div>
+    </ng-template>
+  </div>

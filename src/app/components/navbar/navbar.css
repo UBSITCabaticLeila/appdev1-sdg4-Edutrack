@@ -36,13 +36,6 @@ nav {
 
 .nav-right { display: flex; align-items: center; gap: 10px; margin-left: auto; }
 
-.sdg-badge {
-  font-size: 10.5px; padding: 3px 9px; border-radius: 5px;
-  background: #fef3c7; color: #d97706;
-  font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase;
-  border: 1px solid rgba(217,119,6,0.2);
-}
-
 .btn-cta {
   padding: 8px 20px; border-radius: 9px;
   background: #1b6e4e; color: #fff;
@@ -52,14 +45,41 @@ nav {
 }
 .btn-cta:hover { background: #145c3f; transform: translateY(-1px); }
 
-.btn-signout {
-  background: #e53e3e;
+/* ── Signed In State ── */
+.nav-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
-.btn-signout:hover { background: #c53030; transform: translateY(-1px); }
-
-.user-email {
-  font-size: 12px; color: #1b6e4e; font-weight: 600;
-  background: #d0ead9; padding: 4px 10px; border-radius: 6px;
+.nav-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: #1b6e4e;
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Fraunces', serif;
+}
+.btn-signout {
+  padding: 9px 18px;
+  border-radius: 9px;
+  background: #fff;
+  border: 1.5px solid rgba(0,0,0,0.12);
+  font-size: 13px;
+  font-weight: 600;
+  color: #1a1614;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+.btn-signout:hover {
+  background: #fce4ec;
+  border-color: #be4c6e;
+  color: #be4c6e;
 }
 
 /* ── Modal ── */
@@ -70,7 +90,6 @@ nav {
   z-index: 1000;
   backdrop-filter: blur(4px);
 }
-
 .modal-box {
   position: relative;
   background: #fff;
@@ -82,7 +101,6 @@ nav {
   box-shadow: 0 8px 48px rgba(0,0,0,0.2);
   text-align: center;
 }
-
 .modal-close {
   position: absolute; top: 1rem; right: 1rem;
   background: none; border: none;
@@ -90,7 +108,6 @@ nav {
   line-height: 1;
 }
 .modal-close:hover { color: #333; }
-
 .modal-logo {
   background: #1b6e4e; color: white;
   font-family: 'Fraunces', serif;
@@ -99,7 +116,6 @@ nav {
   display: flex; align-items: center; justify-content: center;
   margin-bottom: 0.25rem;
 }
-
 .modal-box h2 {
   margin: 0;
   font-family: 'Fraunces', serif;
@@ -107,20 +123,12 @@ nav {
   font-style: italic;
   color: #1a1614;
 }
-
-.modal-box > p {
-  margin: 0; color: #8a827a; font-size: 0.9rem;
-}
-
+.modal-box > p { margin: 0; color: #8a827a; font-size: 0.9rem; }
 .modal-field {
   width: 100%; display: flex; flex-direction: column;
   gap: 0.4rem; text-align: left; margin-top: 0.25rem;
 }
-
-.modal-field label {
-  font-size: 0.85rem; font-weight: 600; color: #4a4440;
-}
-
+.modal-field label { font-size: 0.85rem; font-weight: 600; color: #4a4440; }
 .modal-input {
   padding: 0.75rem 1rem;
   border: 1.5px solid #e8e2d8;
@@ -129,15 +137,8 @@ nav {
   width: 100%; box-sizing: border-box;
   transition: border 0.2s, background 0.2s;
 }
-.modal-input:focus {
-  border-color: #1b6e4e; background: #fff;
-}
-
-.error-msg {
-  color: #dc2626; font-size: 0.82rem;
-  width: 100%; text-align: left; margin: 0;
-}
-
+.modal-input:focus { border-color: #1b6e4e; background: #fff; }
+.error-msg { color: #dc2626; font-size: 0.82rem; width: 100%; text-align: left; margin: 0; }
 .btn-signin-modal {
   width: 100%; background: #1b6e4e; color: white;
   border: none; padding: 0.9rem;
@@ -150,10 +151,6 @@ nav {
   background: #145c3f; transform: translateY(-1px);
   box-shadow: 0 6px 20px rgba(27,110,78,0.25);
 }
-
 .modal-footer { font-size: 0.85rem; color: #8a827a; }
 .modal-footer a { color: #1b6e4e; font-weight: 600; }
-
-.modal-guard-note {
-  font-size: 0.75rem; color: #b0a89e;
-}
+.modal-guard-note { font-size: 0.75rem; color: #b0a89e; }

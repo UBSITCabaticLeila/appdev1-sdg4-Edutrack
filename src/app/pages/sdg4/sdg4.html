@@ -1,0 +1,74 @@
+<div class="sdg4-page">
+
+    <!-- Hero Banner -->
+    <section class="hero">
+      <div class="hero-content">
+        <p class="hero-label">UNITED NATIONS SUSTAINABLE DEVELOPMENT GOAL</p>
+        <h1 class="hero-title">SDG 4 — Quality Education</h1>
+        <p class="hero-quote">
+          "Ensure inclusive and equitable quality education and promote lifelong
+          learning opportunities for all." — United Nations, 2030 Agenda
+        </p>
+      </div>
+      <div class="hero-watermark">4</div>
+    </section>
+  
+    <!-- Stats -->
+    <section class="stats">
+      <div class="stat-card">
+        <span class="stat-number">258M</span>
+        <span class="stat-label">Children and youth out of school worldwide</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number">773M</span>
+        <span class="stat-label">Adults lack basic literacy skills globally</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number">40%</span>
+        <span class="stat-label">Of countries lack sufficient teachers by 2030</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number">$3T</span>
+        <span class="stat-label">Annual funding gap in low-income country education</span>
+      </div>
+    </section>
+  
+    <!-- Key Targets -->
+    <section class="targets">
+      <p class="section-label">KEY TARGETS</p>
+      <h2 class="section-title">SDG 4 Targets for 2030</h2>
+      <div class="target-grid">
+        <div class="target-card" *ngFor="let target of targets">
+          <p class="target-id">{{ target.id }}</p>
+          <p class="target-title">{{ target.title }}</p>
+          <p class="target-text">{{ target.text }}</p>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Contribution -->
+    <section class="contribution">
+      <p class="section-label">OUR CONTRIBUTION</p>
+      <h2 class="section-title">How EduTrack supports SDG 4</h2>
+      <div class="contrib-grid">
+        <div class="contrib-card" *ngFor="let item of contributions">
+          <span class="contrib-icon">{{ item.icon }}</span>
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.text }}</p>
+        </div>
+      </div>
+    </section>
+  
+  </div>
+  
+  <!-- Footer -->
+  <footer class="sdg4-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo">ET</div>
+        <span>EduTrack</span>
+      </div>
+      <p class="footer-center">University of Baguio · APPDEV1 · S.Y. 2025–2026</p>
+      <p class="footer-right">SDG 4 — Quality Education · un.org/sustainabledevelopment</p>
+    </div>
+  </footer>
