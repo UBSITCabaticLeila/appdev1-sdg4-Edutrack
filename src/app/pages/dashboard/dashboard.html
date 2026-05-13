@@ -21,6 +21,9 @@
       <button class="sidebar-link" [class.active]="activeSection() === 'goals'" (click)="setSection('goals')">
         Daily Goals
       </button>
+      <button class="sidebar-link" [class.active]="activeSection() === 'resources'" (click)="setSection('resources')">
+        Resources
+      </button>
     </nav>
 
     <div class="sidebar-section-label">DISCOVER</div>
@@ -83,6 +86,20 @@
           </app-subject-card>
         </div>
       </div>
+
+      <!-- ── FEATURED RESOURCES (HTTP) ── -->
+      <div class="subjects-card">
+        <div class="subjects-header">
+          <h2>Featured Resources</h2>
+          <span class="api-badge">Open Library API</span>
+        </div>
+        <app-resource-list
+          [books]="featuredBooks"
+          [isLoading]="isLoading"
+          (bookSelected)="onBookSelected($event)">
+        </app-resource-list>
+      </div>
+
     </ng-container>
 
     <!-- MY SUBJECTS -->
@@ -104,7 +121,7 @@
 
     <!-- DAILY GOALS -->
     <ng-container *ngIf="activeSection() === 'goals'">
-      <div class="panel-card goals-full">
+      <div class="subjects-card goals-full">
         <div class="goals-header">
           <h3>Today's Goals</h3>
           <button class="btn-add" (click)="openAddGoal()">+ Goal</button>
@@ -121,6 +138,36 @@
         <div class="goals-summary">
           {{ completedGoals() }} of {{ goals.length }} goals completed today
         </div>
+      </div>
+    </ng-container>
+
+    <!-- RESOURCES (HTTP & External API) -->
+    <ng-container *ngIf="activeSection() === 'resources'">
+      <div class="subjects-card">
+        <div class="subjects-header">
+          <h2>Learning Resources</h2>
+          <span class="api-badge">Open Library API</span>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="search-bar">
+          <input
+            type="text"
+            class="search-input"
+            placeholder="Search books, topics, authors..."
+            [ngModel]="searchQuery()"
+            (ngModelChange)="searchQuery.set($event)"
+            (keydown.enter)="onSearch()"
+          />
+          <button class="search-btn" (click)="onSearch()">Search</button>
+        </div>
+
+        <!-- ResourceListComponent receives data via @Input, emits via @Output -->
+        <app-resource-list
+          [books]="featuredBooks"
+          [isLoading]="isLoading"
+          (bookSelected)="onBookSelected($event)">
+        </app-resource-list>
       </div>
     </ng-container>
 

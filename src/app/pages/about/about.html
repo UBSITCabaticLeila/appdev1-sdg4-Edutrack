@@ -1,2 +1,168 @@
-<h1>About EduTrack</h1>
-<p>This app was built for your Angular exam project.</p>
+<div class="about-page">
+
+    <!-- Hero -->
+    <section class="about-hero">
+      <div>
+        <p class="about-hero__eyebrow">ANGULAR CAPSTONE PROJECT — SDG 4</p>
+        <h1 class="about-hero__title">EduTrack — <em>Quality Education</em></h1>
+        <p class="about-hero__quote">
+          "Empowering learners to organize resources, track goals, and contribute to
+          inclusive, equitable quality education for all."
+        </p>
+        <div class="about-hero__tags">
+          <span class="hero-tag">Angular 17+</span>
+          <span class="hero-tag">Open Library API</span>
+          <span class="hero-tag">SDG 4 Aligned</span>
+        </div>
+      </div>
+      <div class="about-hero__watermark">ET</div>
+    </section>
+  
+    <!-- Stats -->
+    <div class="about-stats">
+      <div class="stat-item">
+        <span class="stat-item__value">6+</span>
+        <div class="stat-item__label">Pages & Routes built</div>
+      </div>
+      <div class="stat-item">
+        <span class="stat-item__value">5</span>
+        <div class="stat-item__label">Angular concepts demonstrated</div>
+      </div>
+      <div class="stat-item">
+        <span class="stat-item__value">1</span>
+        <div class="stat-item__label">External REST API integrated</div>
+      </div>
+      <div class="stat-item">
+        <span class="stat-item__value">SDG 4</span>
+        <div class="stat-item__label">UN Goal this app supports</div>
+      </div>
+    </div>
+  
+    <!-- Project Overview -->
+    <section class="about-section">
+      <p class="about-section__eyebrow">ABOUT THE PROJECT</p>
+      <h2 class="about-section__title"><em>What is EduTrack and Why Was It Built?</em></h2>
+      <div class="about-section__inner">
+        <div class="about-section__main">
+          <p class="about-section__body">
+            EduTrack is a single-page application (SPA) built with <strong>Angular 17+</strong> as a
+            capstone project for an Application Development course. It demonstrates a full range of
+            Angular fundamentals — component architecture, routing with guards, reactive forms,
+            signals, HTTP client integration, and RxJS observables — while delivering a genuinely
+            useful tool for students and self-learners.
+          </p>
+          <p class="about-section__body">
+            The app connects to the <strong>Open Library REST API</strong> to surface real educational
+            resources, giving users a live, searchable catalog of books aligned to their subjects
+            and goals. Every feature was designed with SDG 4 — Quality Education — in mind.
+          </p>
+        </div>
+        <div class="about-section__side">
+          <div class="side-card">
+            <div class="side-card__label">SDG 4 Connection</div>
+            <p>EduTrack directly supports access to quality educational resources, promotes
+            self-directed lifelong learning, and tracks academic progress — all core pillars
+            of the UN's 2030 education agenda.</p>
+          </div>
+          <div class="side-card">
+            <div class="side-card__label">Course Context</div>
+            <p>Built as a final submission for Application Development 1, demonstrating
+            mastery of Angular standalone components, routing, HTTP, and reactive state.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Tech Stack -->
+    <section class="about-section">
+      <p class="about-section__eyebrow">TECHNOLOGY</p>
+      <h2 class="about-section__title"><em>Tech Stack & Tools Used</em></h2>
+      <div class="tech-grid">
+        <div class="tech-card">
+          <div class="tech-card__name">Angular 17+</div>
+          <div class="tech-card__role">Frontend Framework</div>
+          <p class="tech-card__desc">Standalone components, signals, reactive forms, and the Angular CLI build system.</p>
+        </div>
+        <div class="tech-card">
+          <div class="tech-card__name">TypeScript</div>
+          <div class="tech-card__role">Language</div>
+          <p class="tech-card__desc">Typed interfaces for API responses, models, and component logic throughout.</p>
+        </div>
+        <div class="tech-card">
+          <div class="tech-card__name">RxJS</div>
+          <div class="tech-card__role">Async & HTTP</div>
+          <p class="tech-card__desc">Observables, map(), catchError(), and subscription management for API calls.</p>
+        </div>
+        <div class="tech-card">
+          <div class="tech-card__name">Angular Router</div>
+          <div class="tech-card__role">Navigation & Guards</div>
+          <p class="tech-card__desc">Route guards (canActivate, canDeactivate) protecting dashboard and forms.</p>
+        </div>
+        <div class="tech-card">
+          <div class="tech-card__name">Open Library API</div>
+          <div class="tech-card__role">External Data Source</div>
+          <p class="tech-card__desc">REST API providing live book search results and detailed work metadata.</p>
+        </div>
+        <div class="tech-card">
+          <div class="tech-card__name">Angular Signals</div>
+          <div class="tech-card__role">State Management</div>
+          <p class="tech-card__desc">Fine-grained reactivity for auth state, loading indicators, and UI toggles.</p>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Key Features -->
+    <section class="about-section">
+      <p class="about-section__eyebrow">FEATURES</p>
+      <h2 class="about-section__title"><em>What EduTrack Can Do</em></h2>
+      <div class="features-list">
+        <div class="feature-row">
+          <div class="feature-row__num">01</div>
+          <div class="feature-row__content">
+            <h3>Auth with Route Guards</h3>
+            <p>Login/logout flow using Angular signals and localStorage. A <code>canActivate</code> guard protects the Dashboard, and a <code>canDeactivate</code> guard prevents accidental navigation away from unsaved changes.</p>
+          </div>
+        </div>
+        <div class="feature-row">
+          <div class="feature-row__num">02</div>
+          <div class="feature-row__content">
+            <h3>Live Book Search via HTTP</h3>
+            <p>ResourceService uses Angular's HttpClient to query the Open Library REST API in real time. Results are transformed via RxJS <code>map()</code> and fall back to hardcoded data via <code>catchError()</code> on failure.</p>
+          </div>
+        </div>
+        <div class="feature-row">
+          <div class="feature-row__num">03</div>
+          <div class="feature-row__content">
+            <h3>Goal & Subject Tracking</h3>
+            <p>Dashboard features subject cards, academic goal lists, a Pomodoro focus timer, and an achievement system — all powered by Angular signals for reactive state updates.</p>
+          </div>
+        </div>
+        <div class="feature-row">
+          <div class="feature-row__num">04</div>
+          <div class="feature-row__content">
+            <h3>SDG 4 Info Page</h3>
+            <p>A dedicated page covering SDG 4 targets, global education statistics, an interactive quiz, and EduTrack's direct contribution to the UN's 2030 education agenda.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Developer -->
+    <section class="about-section">
+      <p class="about-section__eyebrow">THE DEVELOPER</p>
+      <h2 class="about-section__title"><em>Built by</em></h2>
+      <div class="dev-card">
+        <div class="dev-card__avatar">LM</div>
+        <div class="dev-card__info">
+          <h3>Cabatic, LM</h3>
+          <p class="dev-card__role">Application Development Student</p>
+          <p class="dev-card__note">
+            This project was built as a capstone submission demonstrating Angular fundamentals,
+            REST API integration, route guards, signals, and UI/UX design — all aligned with
+            the UN Sustainable Development Goal 4: Quality Education.
+          </p>
+        </div>
+      </div>
+    </section>
+  
+  </div>

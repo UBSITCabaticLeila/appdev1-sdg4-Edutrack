@@ -1,8 +1,11 @@
-import { Component, computed, signal, OnDestroy } from '@angular/core';
+import { Component, computed, signal, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { SubjectCardComponent, Subject } from '../../components/subject-card/subject-card';
+import { ResourceListComponent } from '../../components/resource-list/resource-list';
+import { ResourceService } from '../../services/resource';
+import { Book } from '../../models/book.model';
 
 interface Goal {
   text: string;
@@ -12,11 +15,68 @@ interface Goal {
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule, SubjectCardComponent],
+  imports: [CommonModule, RouterModule, FormsModule, SubjectCardComponent, ResourceListComponent],
   templateUrl: './dashboard.html',
   styleUrls: ['./dashboard.css']
 })
-export class DashboardComponent implements OnDestroy {
+export class DashboardComponent implements OnInit, OnDestroy {
+
+  // ── HTTP / API ────────────────────────────────────
+  featuredBooks: Book[] = [];
+  searchQuery = signal('');
+  hasSearched = signal(false);
+
+  constructor(private resourceService: ResourceService) {}
+
+  ngOnInit(): void {
+    this.loadFeaturedBooks();
+  }
+
+  // Load featured books on dashboard init (HTTP GET via ResourceService)
+  loadFeaturedBooks(): void {
+    this.resourceService.isLoading.set(true);
+    this.resourceService.getFeaturedBooks().subscribe({
+      next: (books: Book[]) => {
+        this.featuredBooks = books;
+        this.resourceService.isLoading.set(false);
+      },
+      error: () => {
+        this.resourceService.isLoading.set(false);
+      }
+    });
+  }
+
+  // Search books by query (HTTP GET via ResourceService)
+  onSearch(): void {
+    const query = this.searchQuery().trim();
+    if (!query) return;
+
+    this.hasSearched.set(true);
+    this.resourceService.isLoading.set(true);
+
+    this.resourceService.searchBooks(query).subscribe({
+      next: (books: Book[]) => {
+        this.featuredBooks = books;
+        this.resourceService.isLoading.set(false);
+      },
+      error: () => {
+        this.resourceService.isLoading.set(false);
+      }
+    });
+  }
+
+  onBookSelected(book: Book): void {
+    console.log('Book selected from dashboard:', book.title);
+  }
+
+  get isLoading(): boolean {
+    return this.resourceService.isLoading();
+  }
+
+  // hasUnsavedChanges now also checks for active search (used by unsavedGuard)
+  hasUnsavedChanges(): boolean {
+    return this.pomoRunning() || this.showAddSubjectModal || this.showAddGoalModal || this.hasSearched();
+  }
 
   // ── Auth ──────────────────────────────────────────
   isLoggedIn = signal(localStorage.getItem('edutrack_user') !== null);
@@ -132,10 +192,6 @@ export class DashboardComponent implements OnDestroy {
     if (!text) return;
     this.goals.push({ text, done: false });
     this.closeAddGoal();
-  }
-
-  hasUnsavedChanges(): boolean {
-    return this.pomoRunning() || this.showAddSubjectModal || this.showAddGoalModal;
   }
 
   onOverlayClick(event: MouseEvent, modal: 'subject' | 'goal') {
